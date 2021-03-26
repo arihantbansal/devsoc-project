@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  color: white;
+}
+
+nav .navbar-brand {
+  /* size for brand */
+  font-size: 1.5rem;
+}
+
+/* colors for brand */
+nav .navbar-brand .blue {
+  color: #537fbe;
+}
+
+nav .navbar-brand .red {
+  color: #ea433b;
+}
+
+nav .navbar-brand .yellow {
+  color: #f5b82e;
+}
+
+nav .navbar-brand .green {
+  color: #2e944b;
+}
+
+main .form-control {
+  /* center form controls */
+  display: inline-block;
+  /* override Bootstrap's 100% width for form controls */
+  width: auto;
+}
+
+main {
+  /* scroll horizontally as needed */
+  overflow-x: auto;
+  /* center contents */
+  text-align: center;
+}
+
+main img {
+  /* constrain images on small screens */
+  max-width: 100%;
+}
+
+html, body{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html{
+  height: 100% !important;
+}
+body{
+  min-height: 100% !important;
+}
