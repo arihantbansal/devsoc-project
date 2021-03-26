@@ -1,4 +1,4 @@
-# Scheddy - Your Scheduling ally!
+# Scheddy - Your Scheduling Ally!
 
 Scheddy helps you schedule meetings without the back-and-forth emails.
 
