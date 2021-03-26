@@ -137,7 +137,7 @@
   padding-bottom: 30px;
 }
 
-#Us {
+#us {
   background-image: linear-gradient(to right, rgb(252, 237, 103), #ebaf2c);
   padding-top: 100px;
   padding-bottom: 50px;
@@ -225,4 +225,8 @@
   padding-top: 7px;
   border-radius: 2px;
   background-image: linear-gradient(to right, deepSkyBlue, #1a4c8d);
+}
+
+#us a {
+  color: #1a4c8d;
 }

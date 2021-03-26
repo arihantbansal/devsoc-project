@@ -5,40 +5,45 @@
 {% endblock %}
 
 {% block main %}
-
-    {% if post %}
-        {% if msg %}
-            <div clas="row align-items-center justify-content-center">
-                <p>
-                    {{ msg }}
-                </p>
-            </div>
-        {% else %}
-            <div class="row p-2">
-                <div class="col">
-                    <p>Your common meeting time slot is: </p>
-                </div>
-                <div class="col">
+    <div class="container-fluid">
+        {% if post %}
+            {% if msg %}
+                <div clas="row align-items-center justify-content-center">
                     <p>
-                        {{ start }} - {{ end }}
+                        {{ msg }}
                     </p>
                 </div>
-            </div>
+            {% else %}
+                <div class="row p-2 text-center">
+                    <div class="col">
+                        <p>Your common meeting time slot is: </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            {{ start }} - {{ end }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row p-2 text-center mb-4">
+                    <div class="col">
+                        Go <a href="https://meet.google.com/zsc-fwid-dgu" target="_blank" style="color: grey;">make a meeting</a>. Your friend is waiting for you.
+                    </div>
+                </div>
+            {% endif %}
         {% endif %}
-    {% endif %}
 
-    <h2>Schedule {% if time %} another {% else %} a {% endif %} meeting</h2>
-    <br><br>
-    <form class="form-group row gx-3 gy-2 align-items-center justify-content-center" method="POST">
-        <div class="col-md-2">
-            <p>Username: </p>
-        </div>
-        <div class="col-md-2">
-            <input type="text" class="form-control" id="username" name="username">
-        </div>
-        <div class="col">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-
+        <h2>Schedule {% if time %} another {% else %} a {% endif %} meeting</h2>
+        <br><br>
+        <form class="form-group row gx-3 gy-2 align-items-center justify-content-center" method="POST">
+            <div class="col-md-3">
+                <p>Username: </p>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

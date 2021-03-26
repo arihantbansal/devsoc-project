@@ -33,8 +33,13 @@ Session(app)
 
 
 @app.route("/")
-@login_required
 def index():
+    return render_template("index.html")
+
+
+@app.route("/home")
+@login_required
+def home():
     """Show meeting time"""
 
     # Get id of current user session
@@ -46,9 +51,9 @@ def index():
     time_slot = Meeting.query.filter_by(username=user.username).first()
     exists = bool(time_slot)
     if exists:
-        return render_template("index.html", start_time=time_slot.start_time, end_time=time_slot.end_time, exists=exists)
+        return render_template("home.html", start_time=time_slot.start_time, end_time=time_slot.end_time, exists=exists)
     else:
-        return render_template("index.html", exists=exists)
+        return render_template("home.html", exists=exists)
 
 
 @app.route("/add_meeting", methods=["GET", "POST"])
@@ -94,7 +99,7 @@ def add_meeting():
         db.session.add(new_meeting)
         db.session.commit()
 
-        return redirect("/")
+        return redirect("/home")
 
     else:
         return render_template("meeting.html")
@@ -169,11 +174,17 @@ def login():
         if not user or not check_password_hash(user.password, request.form.get("password")):
             return apology("invalid username and/or password", 403)
 
+        db.session.add(user)
+        db.session.commit()
+
         # Add user to current session
         session["user_id"] = user.id
 
+        # Set logged in to true
+        session['logged_in'] = True
+
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/home")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -183,6 +194,9 @@ def login():
 @app.route("/logout")
 def logout():
     """Log user out"""
+
+    # Set logged in to false
+    session['logged_in'] = False
 
     # Forget any user_id
     session.clear()
@@ -229,16 +243,13 @@ def register():
         # Add user to current session
         session["user_id"] = user.id
 
+        # Set logged in to true
+        session['logged_in'] = True
+
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/home")
     else:
         return render_template("register.html")
-
-
-@app.route("/about")
-def about():
-    """Render About Us page"""
-    return render_template("about.html")
 
 
 @app.errorhandler(404)
