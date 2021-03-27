@@ -4,12 +4,13 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, common_time_slot
+from os import environ
 
 # Configure application
 app = Flask(__name__)
 
 # Configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///meetings.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL') or 'sqlite:///meetings.db'
 db = SQLAlchemy(app)
 
 # Ensure templates are auto-reloaded
